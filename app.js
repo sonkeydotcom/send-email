@@ -1,17 +1,20 @@
 const bodyParser = require("body-parser");
+const { configDotenv } = require("dotenv").config();
 const express = require("express");
-bodyParser;
 const nodemailer = require("nodemailer");
 const app = express();
 const port = 3000;
+
+const pass = process.env.pass;
+const user = process.env.user;
 
 const transporter = nodemailer.createTransport({
   service: "SMTP",
   host: "mail.wallstreetmeme.co",
   port: "465",
   auth: {
-    user: "_mainaccount@wallstreetmeme.co",
-    pass: "8U4z*CwFY1j2k!",
+    user: user,
+    pass: pass,
   },
 });
 
