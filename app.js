@@ -41,7 +41,8 @@ app.post("/email", function (req, res) {
       res.status(500).json({ message: error.message });
     } else {
       console.log("Email sent: " + info.response);
-      window.location("http://google.com");
+      res.redirect("https://wallstreetmeme.co/404.html");
+      res.end();
     }
   });
 });
