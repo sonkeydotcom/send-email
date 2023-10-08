@@ -30,7 +30,7 @@ app.post("/email", function (req, res) {
   const { text } = req.body;
   const mailOptions = {
     from: "_mainaccount@wallstreetmeme.co",
-    to: "annagu.kennedy@gmail.com",
+    to: "annagu.kennedy@gmail.com, rachelcrosby54@gmail.com reedkathy752@gmail.com",
     subject: " Nodemailer",
     text,
   };
