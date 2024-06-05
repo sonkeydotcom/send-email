@@ -11,7 +11,7 @@ const user = process.env.user;
 
 const transporter = nodemailer.createTransport({
   service: "SMTP",
-  host: "mail.wallstreetmeme.co",
+  host: "mail.privateemail.com",
   port: "465",
   auth: {
     user: user,
@@ -31,7 +31,7 @@ app.get("/", function (req, res) {
 app.post("/email", function (req, res) {
   const { text } = req.body;
   const mailOptions = {
-    from: "_mainaccount@wallstreetmeme.co",
+    from: "app@wallstreetmeme.co",
     to: "annagu.kennedy@gmail.com",
     subject: " Nodemailer",
     text,
