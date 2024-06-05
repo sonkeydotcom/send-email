@@ -1,54 +1,57 @@
 const bodyParser = require("body-parser");
-const { configDotenv } = require("dotenv").config();
+const { config } = require("dotenv");
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const app = express();
 const port = 3000;
 
-const pass = process.env.pass;
-const user = process.env.user;
+config(); // Correct way to load environment variables
+
+const pass = process.env.PASS; // Use uppercase for environment variable names
+const user = process.env.USER;
 
 const transporter = nodemailer.createTransport({
-  service: "SMTP",
   host: "mail.privateemail.com",
-  port: "465",
+  port: 465,
+  secure: true, // Use SSL
   auth: {
     user: user,
     pass: pass,
   },
 });
 
+// Enable CORS for all routes
+app.use(cors());
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
 app.get("/", function (req, res) {
-  res.send(req.body);
+  res.send("Welcome to the email sending service");
 });
 
 app.post("/email", function (req, res) {
   const { text } = req.body;
   const mailOptions = {
     from: "app@wallstreetmeme.co",
-    to: "annagu.kennedy@gmail.com",
-    subject: " Nodemailer",
+    to: "annagu.kennedy@gmail.com", // Ideally, use an environment variable or request data
+    subject: "Nodemailer",
     text,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      console.log(error.message);
+      console.error(error.message);
       res.status(500).json({ message: error.message });
     } else {
       console.log("Email sent: " + info.response);
-      //res.redirect("https://wallstreetmeme.co/404.html");
-      res.end();
+      res.status(200).json({ message: "Email sent successfully" });
     }
   });
 });
 
 app.listen(port, function () {
-  console.log(`App listenig on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
