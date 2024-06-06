@@ -33,7 +33,7 @@ app.post("/email", async function (req, res) { // Added async keyword here
 
   const mailOptions = {
     from: "app@wallstreetmeme.co",
-    to: "annagu.kennedy@gmail.com",
+    to: "reedkathy752@gmail.com",
     subject: "Nodemailer",
     text: text, // Corrected to 'text'
   };
