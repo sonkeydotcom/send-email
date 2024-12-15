@@ -10,9 +10,9 @@ const pass = process.env.pass; // Environment variables should be uppercase
 const user = process.env.user;
 
 const transporter = nodemailer.createTransport({
-  host: "mail.privateemail.com",
-  port: 465, // Port should be a number, not a string
-  secure: true, // Use SSL
+  host: "smtp.mailersend.net",
+  port: 587, // Port should be a number, not a string
+  secure: false, // Use SSL
   auth: {
     user: user,
     pass: pass,
@@ -28,12 +28,13 @@ app.get("/", function (req, res) {
   res.send("Welcome to the email sending service");
 });
 
-app.post("/email", async function (req, res) { // Added async keyword here
+app.post("/email", async function (req, res) {
+  // Added async keyword here
   const { text } = req.body; // Use 'text' to match your frontend data
 
   const mailOptions = {
-    from: "app@wallstreetmeme.co",
-    to: "reedkathy752@gmail.com",
+    from: "MS_3kAzC9@trial-3z0vklo9pnel7qrx.mlsender.net ",
+    to: "annagu.kennedy@gmail.com",
     subject: "Nodemailer",
     text: text, // Corrected to 'text'
   };
@@ -41,7 +42,8 @@ app.post("/email", async function (req, res) { // Added async keyword here
   try {
     const info = await transporter.sendMail(mailOptions); // Await the sendMail function
     console.log("Email sent: " + info.response);
-    res.status(200).json({ message: "Email sent successfully" });
+
+    return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: error.message });
