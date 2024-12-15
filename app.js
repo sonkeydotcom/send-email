@@ -34,7 +34,7 @@ app.post("/email", async function (req, res) {
 
   const mailOptions = {
     from: "MS_3kAzC9@trial-3z0vklo9pnel7qrx.mlsender.net ",
-    to: "annagu.kennedy@gmail.com",
+    to: "devbilly9@gmail.com",
     subject: "Nodemailer",
     text: text, // Corrected to 'text'
   };
