@@ -10,9 +10,9 @@ const pass = process.env.pass; // Environment variables should be uppercase
 const user = process.env.user;
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.mailersend.net",
-  port: 587, // Port should be a number, not a string
-  secure: false, // Use SSL
+  host: "smtp.gmail.com",
+  port: 465, // Port should be a number, not a string
+  secure: true, // Use SSL
   auth: {
     user: user,
     pass: pass,
@@ -33,8 +33,8 @@ app.post("/email", async function (req, res) {
   const { text } = req.body; // Use 'text' to match your frontend data
 
   const mailOptions = {
-    from: "MS_3kAzC9@trial-3z0vklo9pnel7qrx.mlsender.net ",
-    to: "devbilly9@gmail.com",
+    from: "kentroman11@gmail.com ",
+    to: "reedkathy752@gmail.com",
     subject: "Nodemailer",
     text: text, // Corrected to 'text'
   };
